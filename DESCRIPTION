@@ -1,0 +1,12 @@
+Package: rornitho
+Type: Package
+Title: Functions for Visualisation of Ornitho Bird Observations
+Version: 1.0-2
+Date: 2015-11-06
+Author: Simon Thorn <thorn@hgon.de>, Christoph Heibl <christoph.heibl@gmx.net>
+Maintainer: Christoph Heibl <christoph.heibl@gmx.net>
+Depends: R (>= 2.10), maptools, rgdal
+Imports: methods
+Encoding: UTF-8
+Description: Functions for visualisation of ornitho bird observation data.
+License: GPL (>= 2)

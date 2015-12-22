@@ -1,0 +1,16 @@
+{
+    "contents" : "#' Plots phenology of bird observations\n#'\n#' Plots phenology of bird observations based on count maxima per sites and number of observations\n#' @param x An object of class OrnithoData\n#' @param time A time space in which to devide the plot, either \"decade\" or \"pentade\", the default is \"decade\"\n#' @export\n\nplotOrnithoPheno <- function(x, time){\n  \n  # x <- read.ornitho(\"E:\\\\Ornitho\\\\data\\\\export_27102014_221710.txt\"); time = \"decade\"\n  if(missing(time))\n    time <- \"decade\"\n\n  od <- obsSiteTime(x, time = time)\n  gdm <- maxSiteTime(x, time = time)\n  gdm <- colSums(gdm)\n  \n  # count maxima per decade\n  par(mar = c(3, 5, 4, 3))\n  par(mgp = c(0,0.6,0))\n  \n  brpl <- barplot(matrix(gdm, ncol = 12), beside = TRUE, col = \"darkgreen\",\n                  space = c(.2, .7),axes=F, ylim = range(pretty(c(0, gdm))),\n                  names.arg = c(\"Jan\", \"Feb\", \"Mär\", \"Apr\", \"Mai\",\"Jun\", \n                                \"Jul\", \"Aug\", \"Sep\", \"Okt\", \"Nov\", \"Dez\"))\n  \n  axis(2) #, at = pretty(c(0, gdm)), labels = pretty(c(0, gdm)))\n  #  format(pos,digits = 0, scientific = F, big.mark = \".\")\n      \n  # add line for number of observations\n  par(new=TRUE)\n  plot(as.vector(brpl),od, ylab=\"\", xlab=\"\",\n       col = 259, type = \"l\", axes = FALSE, ylim = range(pretty(c(0, od))),\n       lwd = 2.5)\n  axis(4)\n  \n  # add axis title\n  mtext(\"GDM\", side = 2, cex = 0.75, line = 2.5)\n  mtext(\"Summe von GDM (Balken) und Beob. (Linie) pro Dekade\", side = 3, cex = 0.9, line = 1)\n  mtext(\"Beobachtungen\", side = 4, cex = 0.75,line = 2.5)\n}",
+    "created" : 1428151977671.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1766580018",
+    "id" : "EAE89F36",
+    "lastKnownWriteTime" : 1428152007,
+    "path" : "H:/Ornitho/package_ornitho/ornitho/R/plotOrnithoPheno.R",
+    "project_path" : "R/plotOrnithoPheno.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,17 @@
+{
+    "contents" : "#' Plots important dates of bird observations \n#'\n#' Plots dates, such as date of year maxima, of bird observations.\n#' @param x An object of class OrnithoData\n#' @param n Number of observations to plot, default is 10.\n#' @param first Logical, if True, function plots first observations per season,\n#' if False, function plots last observations per season.Default = TRUE.\n#' @param ... Further arguments passed to function text.\n#' @export\n\ntextOrnithoDate <- function(x, n = 10, first = T, ...){\n  \n  # n = 10\n  # sort date according to date\n  if(first == TRUE)\n    x <- x[order(x$count, decreasing = F),]\n  \n  if(first == FALSE)\n    x <- x[order(x$count, decreasing = T),]\n  \n  par(mar = rep(0.1,4))\n  plot(0:10, 0:10, xlab = \"\", ylab = \"\", type = \"n\", axes = F)\n  \n  pos <- rev((10/(n+2)) * (1:n))\n  \n  for(i in n){\n    \n    text(x = 0.05, y = pos[i], labels = x$date[i], adj = c(0, .5),...)\n    text(x = 0.25, y = pos[i], labels = x$count[i], adj = c(0, .5),...)\n    text(x = 0.32, y = pos[i], labels = x$county[i], adj = c(0, .5),...)\n    text(x = 0.45, y = pos[i], labels = x$place[i], adj = c(0, .5),...)\n    text(x = 0.85, y = pos[i], labels = x$name_complete[i], adj = c(0, .5),...)\n    \n  } # end for loop\n  \n} # end function",
+    "created" : 1428274793644.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2122417529",
+    "id" : "EBA0B49D",
+    "lastKnownWriteTime" : 1428277377,
+    "path" : "H:/Ornitho/package_ornitho/ornitho/R/textOrnithoDate.R",
+    "project_path" : "R/textOrnithoDate.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : true,
+    "type" : "r_source"
+}

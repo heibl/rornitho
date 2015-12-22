@@ -1,0 +1,16 @@
+{
+    "contents" : "#' Plots basis map for adding observations\n#'\n#' Plots three basal map on which ornitho observations can be added through the function plotOrnithoObs\n#' @param x An object of class OrnithoData\n#' @param show.hidden logical, should hidden observations be shown, default is FALSE\n#' @param cex Point size of points to be plotted, if argument is missing cex size will be abundance weighted\n#' @param ... further arguments passed through function points()\n#' @export\n\nplotOrnithoPoints <- function (x, show.hidden = F, cex, ...) {\n  \n  # x <- tab\n  if(show.hidden == F){\n    x <- x[x$hidden == \"no\",]\n  if(nrow(x) == 0)\n    text(x = 0.5, y= 0.5, \"Alle Beobachtungen geschützt\")}\n  \n    # generate sizes for points\n    if(format(mean(x$count), digits = 0, big.mark =\".\") == 1){\n      \n      x$pt_size <- 1.5 \n      \n      }else{\n        \n        x$pt_size <- log(x$count)/log(max(x$count))*5+1}\n    \n  if(missing(cex)){\n    cex <- x$pt_size}\n    \n    x$col <- \"darkgreen\"\n    \n    # transform to spatial points object\n    x <- SpatialPointsDataFrame(coords = x[, c(\"x\", \"y\")],\n                                proj4string = CRS(\" +proj=longlat +ellps=WGS84\"),\n                                data = x[, c(\"spec_name\", \"pt_size\", \"col\")])\n    x <- spTransform(x, CRS(\"+proj=tmerc +lat_0=0 +lon_0=9 +k=1 +x_0=3500000 +y_0=0 +datum=potsdam +units=m +no_defs\"))\n  \n  # plot points  \n  points(x, cex = cex, ...)\n  \n}\n",
+    "created" : 1427020091009.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4990722",
+    "id" : "59114700",
+    "lastKnownWriteTime" : 1428151259,
+    "path" : "F:/Ornitho/package_ornitho/ornitho/R/plotOrnithoPoints.R",
+    "project_path" : "R/plotOrnithoPoints.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
