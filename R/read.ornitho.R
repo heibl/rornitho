@@ -12,14 +12,28 @@ read.ornitho <- function(file, subsp = NULL,
   ## read tab-separated database export
   ## more than one file can be read
   ## ------------------------------
-  a <- setAttributes(file)
-  x <- lapply(file, read.csv2, as.is = TRUE, 
-              sep = "\t", fill = TRUE,
-              skip = 2, quote = "", dec = ".",
-              col.names = a$alias, 
-              colClasses = a$class,
-              encoding = "latin1")
-  x <- do.call(rbind, x)
+  # file = tab[1]
+  
+  # predefine colums
+  data("attribute", envir = environment())
+  a <- read.csv2(file = file, as.is = TRUE, sep = "\t", fill = TRUE, 
+                   nrows = 1, quote = "", dec = ".", encoding = "latin1")
+  a <- names(a)
+  index <- match(a, attribute$names)
+  
+  # read file
+  x <- read.csv2(file = file, as.is = TRUE, sep = "\t", fill = TRUE, 
+       skip = 2, quote = "", dec = ".", col.names = attribute$alias[index], 
+       colClasses = attribute$class[index], encoding = "latin1")
+
+  # adjust order
+  x <- x[, c("obs_id","spec_id","spec_name","spec_latin","order","date",
+             "day","month","year","yday","pentade","decade","week",
+             "full_form","place","county","country","y","x","count",
+             "detail","atlas_code","altitude","hidden","id_rest_hab",
+             "id_acc_loc","id_obs_det","name","surname","second_hand",
+              "comment","hidden_comment")]
+
   x$date <- as.POSIXct(x$date, format = "%d.%m.%Y")
   
   ## species list
@@ -62,8 +76,6 @@ read.ornitho <- function(file, subsp = NULL,
     names(ignored) <- c("species", "nb.obs")
     write.csv(ignored, "ignored.csv")
   }
-  
-
   
   ## subset data (according to def)
   ## ------------------------------

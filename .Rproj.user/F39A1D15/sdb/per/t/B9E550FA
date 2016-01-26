@@ -1,0 +1,18 @@
+{
+    "contents" : "## This code is part of the rornitho package\n## © S. Thorn 2016 (last update 2016-01-26)\n\n\ngetOpenMap <- function(border){\n  \n  library(\"OpenStreetMap\")\n\n  xy <- getCorners(sp = border)\n\n  # compile background layer\n  #backgr <- matrix(c(xy$upperLeft, c(xy$upperLeft[1], xy$lowerRight[2]),\n  #                 xy$lowerRight, c(xy$lowerRight[1], xy$upperLeft[2])), \n  #                 ncol = 2, byrow = T)\n  #backgr <- backgr[,2:1]\n  #backgr <- Polygon(backgr)\n  #backgr <- Polygons(list(backgr),1)\n  #backgr <- SpatialPolygons(list(backgr))\n  \n  #backgr@proj4string <- CRS(\"+proj=longlat +ellps=WGS84\")\n  #backgr <- spTransform(backgr,  \n  #                 CRS(\"+proj=tmerc +lat_0=0 +lon_0=9 +k=1 +x_0=3500000 +y_0=0 +datum=potsdam +units=m +no_defs +ellps=bessel +towgs84=598.1,73.7,418.2,0.202,0.045,-2.455,6.7\"))\n\n  # retrieve open map and project according to border\n  map <- openmap(upperLeft = xy$upperLeft, lowerRight = xy$lowerRight)\n  map <- openproj(map,  \n                  projection = CRS(proj4string(border)))\n  map\n}\n",
+    "created" : 1453821468752.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2203691310",
+    "id" : "B9E550FA",
+    "lastKnownWriteTime" : 1453821785,
+    "path" : "C:/Github/rornitho/R/getOpenMap.R",
+    "project_path" : "R/getOpenMap.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

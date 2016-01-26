@@ -1,0 +1,17 @@
+{
+    "contents" : "## This code is part of the rornitho package\n## © S. Thorn 2016 (last update 2016-01-26)\n\ngetCorners <- function(sp, buffer = 0.1, aspect){\n  \n  ## take coordinates of corners\n  ## ---------------------------\n  # sp <- hessen_map\n  xy <- spTransform(sp, CRS(\"+proj=longlat +ellps=WGS84\"))\n  xy <- summary(xy)\n  xy <- xy$bbox\n  \n  rownames(xy) <- c(\"lat\", \"long\")\n  \n  ## apply buffer\n  ## ------------\n  a <- apply(xy, 1, diff)\n  a <- min(buffer * a * .5)\n  xy[, \"min\"] <- xy[, \"min\"] - a\n  xy[, \"max\"] <- xy[, \"max\"] + a\n  \n  # compile output\n  list(upperLeft = c(xy[\"long\", \"max\"], xy[\"lat\", \"min\"]),\n       lowerRight = c(xy[\"long\", \"min\"], xy[\"lat\", \"max\"]))\n  \n}",
+    "created" : 1453814841954.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2198220859",
+    "id" : "3EC51807",
+    "lastKnownWriteTime" : 1453821939,
+    "path" : "C:/Github/rornitho/R/getCorners.R",
+    "project_path" : "R/getCorners.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
