@@ -1,0 +1,37 @@
+export(crop.grid,
+       crop2polygon,
+       df2ornitho,
+       extract.coords,
+       grid.in.polygon,
+       maxSiteTime,
+       missingObservations,
+       obsMaxSiteTime,
+       obsSiteTime,
+       ornitho2df,
+       ornithoMap,
+       ornithoPDF,
+       ornithoSpec,
+       plotOrnitho,
+       plotOrnithoAltitude,
+       plotOrnithoMap,
+       plotOrnithoMTB,
+       plotOrnithoPheno,
+       plotOrnithoPoints,
+       plotOrnithoRaster,
+       projOrnithoMap,
+       read.ornitho,
+       setAttributes,
+       speclist,
+       subsetOrnitho,
+       quarter2full)
+
+import(maptools)
+import(methods)
+import(rgdal)
+#import(sp)
+#importFrom(sp, 
+ #       coordinates, CRS, Line, Lines, over, 
+  #      Polygon, Polygons, proj4string,
+   #     point.in.polygon, SpatialLines, SpatialPoints,
+    #    SpatialPointsDataFrame, SpatialPolygons, 
+     #   SpatialPolygonsDataFrame,spTransform)

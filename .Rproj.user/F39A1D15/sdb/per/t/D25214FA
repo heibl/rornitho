@@ -1,0 +1,17 @@
+{
+    "contents" : "\n\nattribute[22,3] <- \"character\"\nsave(attribute, file = \"C:\\\\Github\\\\rornitho\\\\data\\\\attribute.rda\")\n\n#working directions\n#library(\"rornitho\")\nsetwd(\"F:\\\\Ornitho\")\n\ntab <- list.files(\"data/ornitho_monatsweise\")\ntab <- tab[c(1,47,48)]\ntab <- paste0(\"data/ornitho_monatsweise/\", tab)\n\ndat <- lapply(tab, read.ornitho)\n\ndat[1]\n\n# ornitho map object\ndata(hessen_grid)\ndata(hessen_border)\ndata(hessen_river)\ndata(hessen_lake)\n\n## create ornithoMap object\nhessen_map <- ornithoMap(\n  grid4 = hessen_grid, \n  border = hessen_border,\n  river = hessen_river,\n  lake = hessen_lake)\n\nload(\"das_dat_objekt.rda\")\n\nornithoPDF(dat, map = hessen_map, file = \"test.pdf\")\n\nplotOrnithoPoints\n\nslotNames(hessen_map)\nbbox(hessen_map@border)\n\nproj4string(hessen_border)\nproj4string(hessen_grid)\nproj4string(hessen_lake)\n\nlibrary(\"OpenStreetMap\")\n\nxy <- getCorners(sp = hessen_map)\n\n# compile background layer\nbackgr <- matrix(c(xy$upperLeft, c(xy$upperLeft[1], xy$lowerRight[2]),\n                 xy$lowerRight, c(xy$lowerRight[1], xy$upperLeft[2])), \n                 ncol = 2, byrow = T)\nbackgr <- backgr[,2:1]\nbackgr <- Polygon(backgr)\nbackgr <- Polygons(list(backgr),1)\nbackgr <- SpatialPolygons(list(backgr))\n\nbackgr@proj4string <- CRS(\"+proj=longlat +ellps=WGS84\")\nbackgr <- spTransform(backgr,  \n                 CRS(\"+proj=tmerc +lat_0=0 +lon_0=9 +k=1 +x_0=3500000 +y_0=0 +datum=potsdam +units=m +no_defs +ellps=bessel +towgs84=598.1,73.7,418.2,0.202,0.045,-2.455,6.7\"))\n\n# get open map \nmap <- openmap(upperLeft = xy$upperLeft, lowerRight = xy$lowerRight)\nmap <- openproj(map,  \n                projection = CRS(\"+proj=tmerc +lat_0=0 +lon_0=9 +k=1 +x_0=3500000 +y_0=0 +datum=potsdam +units=m +no_defs +ellps=bessel +towgs84=598.1,73.7,418.2,0.202,0.045,-2.455,6.7\"))\n\nplot(map)\nplot(hessen_map@border, add = T, border = \"red\", fill = \"white\")\n\nplot(backgr, col = \"lightgreen\")\n\n\ntt <- gIntersection(backgr, hessen_map@border[1,], drop_lower_td = F)\nplot(tt, col = \"green\")\n\n\n",
+    "created" : 1453810707354.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3441437145",
+    "id" : "D25214FA",
+    "lastKnownWriteTime" : 1453821790,
+    "path" : "C:/Users/User/Desktop/bastelskript_ornitho.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -5,13 +5,10 @@ Version: 1.0-2
 Date: 2015-11-06
 Author: Simon Thorn <thorn@hgon.de>, Christoph Heibl <christoph.heibl@gmx.net>
 Maintainer: Christoph Heibl <christoph.heibl@gmx.net>
-Depends:
-    R (>= 2.10),
-    maptools,
-    rgdal
-Imports:
-    methods
+Depends: R (>= 2.10), maptools, rgdal
+Imports: methods
 Encoding: UTF-8
 Description: Functions for visualisation of ornitho bird observation data.
 License: GPL (>= 2)
 RoxygenNote: 5.0.1
+Built: R 3.2.3; ; 2016-01-26 15:26:58 UTC; windows

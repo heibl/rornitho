@@ -1,0 +1,17 @@
+{
+    "contents" : "## This code is part of the ornitho package\n## © C. Heibl 2015 (last update 2015-10-26)\n\nsetClass(\"ornithoMap\", \n         slots = list(\n           grid = \"SpatialPolygons\",\n           grid4 = \"SpatialPolygons\",\n           border = \"SpatialPolygons\",\n#            river = \"SpatialLines\",\n#            lake = \"SpatialPolygons\",\n           river = \"ANY\",\n           lake = \"ANY\")\n)\n\n## SET METHOD: INITIALIZE\n## ----------------------\nsetMethod(\"initialize\", \"ornithoMap\",\n          function(.Object, \n                   grid, grid4, border, lake, river){\n            .Object@grid <- grid\n            .Object@grid4 <- grid4\n            .Object@border <- border\n            .Object@river <- river\n            .Object@lake <- lake\n            return(.Object)\n          }\n)\n\n## USER LEVEL CONSTRUCTOR\n## ----------------------\n\"ornithoMap\" <- function(grid4, border, river, lake,\n                         district){\n  if ( !missing(district) ){\n    d.names <- border$Name_admin\n    if ( !district %in% d.names ){\n      stop(\" district '\", district, \"' not available\", \n           \"\\navailable districts:\", paste(d.names, collapse = \", \"))\n    }\n    border <- border[which(d.names == district), ]\n    grid4 <- crop.grid(grid4, border[1, ])\n    \n  } else {\n    grid4 <- crop.grid(grid4, border[1, ])\n  }\n  grid <- quarter2full(grid4)\n  river <- crop2polygon(river, border)\n  lake <- crop2polygon(lake, border)\n  \n  new(Class = \"ornithoMap\", \n      grid = grid,\n      grid4 = grid4, \n      border = border,\n      river = river,\n      lake = lake\n  )\n}\n\n## SET METHOD: SHOW\n## ----------------\nsetMethod(\"show\",\n          signature(object = \"ornithoMap\"),\n          function (object) {\n            p <- proj4string(object@border)\n            p <- strsplit(p, \"[[:space:]]{0,1}[+]\")\n            p <- unlist(p)[-1]\n            cat(\"\\n  *** CLASS ornithoMap ***\",\n                \"\\nextent x   :\", bbox(hessen_border)[1, ],\n                \"\\nextenx y   :\", bbox(hessen_border)[2, ],\n                \"\\nprojection :\", paste(p, \"\\n            \", sep = \"\")\n            )\n          }\n)\n\n",
+    "created" : 1453821964667.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "112948002",
+    "id" : "E45E1E8C",
+    "lastKnownWriteTime" : 1451649007,
+    "path" : "C:/Github/rornitho/R/class-ornithoMap.R",
+    "project_path" : "R/class-ornithoMap.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

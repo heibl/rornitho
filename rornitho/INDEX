@@ -1,0 +1,16 @@
+obsSiteTime             Calculate number of observations per site and
+                        time
+ornitho2df              Conversion between Lists and Data Frames
+ornithoMap              Preparing vector maps
+ornithoMap-class        Class "ornithoMap"
+ornithoPDF              PDF Graphics Device
+ornithoSpec-class       Class "ornithoSpec"
+plotOrnitho             Plot Ornitho Data
+plotOrnithoAltitude     Histograms of Altitudinal Distribution
+plotOrnithoMap          Basemap with County Borders, Lakes and Rivers
+plotOrnithoPheno        Plot Phenology of Bird Observations
+plotOrnithoPoints       Add Observations to Basemap
+plotOrnithoRaster       Plot Rasterized Distribution Data
+projOrnithoMap          Map Projection and Datum Transformation
+read.ornitho            Read ORNITHO Data
+rornitho-package        Ornitho Data in R
