@@ -1,8 +1,8 @@
 Package: rornitho
 Type: Package
 Title: Functions for Visualisation of Ornitho Bird Observations
-Version: 1.0-2
-Date: 2015-11-06
+Version: 1.0-3
+Date: 2016-02-05
 Author: Simon Thorn <thorn@hgon.de>, Christoph Heibl <christoph.heibl@gmx.net>
 Maintainer: Christoph Heibl <christoph.heibl@gmx.net>
 Depends:

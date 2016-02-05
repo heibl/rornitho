@@ -14,8 +14,8 @@ Read bird observation data from the `ornitho.de' project database and produce gr
 \tabular{ll}{
 Package: \tab rornitho\cr
 Type: \tab Package\cr
-Version: \tab 1.0-2\cr
- Date: \tab 2015-11-06\cr
+Version: \tab 1.0-3\cr
+ Date: \tab 2016-02-05\cr
 License: \tab GPL (>= 2)\cr
 }
 The \bold{rornitho} package offers three sets of functions:
