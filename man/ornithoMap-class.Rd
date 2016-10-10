@@ -7,16 +7,17 @@ Class for holding topographical data.
 }
 
 \section{Objects from the Class}{
-Objects can be created by calls of the form \code{\link{ornithoMap}(grid4, border, river, lake, district)}.
+Objects can be created by calls of the form \code{\link{ornithoMap}(what, to, type, grid, grid4, river, lake)}.
 }
 %% Slots
 \section{Slots}{
  \describe{
+
+\item{aerial}{an object of class \code{\link[OpenStreetMap]{OpenStreetMap}} represents an open arial map for border extend.}
+    
  \item{grid}{an object of class \code{\link[sp]{SpatialPolygons}} representing the grid of 1:25.000 topographical maps (often called "Messtischblaetter").}
  
  \item{grid4}{an object of class \code{\link[sp]{SpatialPolygons}} representing a grid of quarters of \code{grid}.}
- 
- \item{border}{an object of class \code{\link[sp]{SpatialPolygons}} representing administrative borders.}
  
  \item{river}{an object of class \code{\link[sp]{SpatialLines}} representing flowing water bodies.}
  
@@ -26,9 +27,9 @@ Objects can be created by calls of the form \code{\link{ornithoMap}(grid4, borde
 %% \section{Extends}{Class \code{"locus"}, directly.}
 %% \details{}
 %% \references{}
-\author{Christoph Heibl}
+\author{Christoph Heibl & Simon Thorn}
 %%\note{}
 \section{seealso}{
-\code{\link{read.ornitho}} to import and \code{\link{ornithoPDF}} to plot \bold{ornitho} monitoring data.
+\code{\link{readOrnitho}} to import and \code{\link{ornithoPDF}} to plot \bold{ornitho} monitoring data.
 }
 %\examples{}

@@ -1,7 +1,10 @@
 ## This code is part of the ornitho package
-## © C. Heibl 2015 (last update 2015-09-29)
+## © C. Heibl & S. Thorn 2015 (last update 2016-06-02)
 
-grid.in.polygon <- function(id, grid, pol, colname = "tk25"){
+grid.in.polygon <- function(id, grid, pol, colname){
+  
+  if(missing(colname))
+    stop(paste("colname must be one of", names(grid)))
   
   g <- grid[slot(grid, "data")[, colname] == id, ]
   tmp <- slot(g, "polygons")
