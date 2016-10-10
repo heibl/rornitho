@@ -21,6 +21,15 @@ an object of class \code{\link[sp]{SpatialLines}} representing flowing water bod
   \item{lake}{
 an object of class \code{\link[sp]{SpatialPolygons}} representing standing water bodies.
 }
+  \item{what}{
+see function crop.border.
+}
+  \item{to}{
+see function crop.border.
+}
+  \item{type}{
+see function openmap.
+}
   \item{district}{
 a character string giving the name of an administrative subunit; may be missing (default) to use the entire area.
 }

@@ -37,6 +37,10 @@ readOrnithoSingleFile <- function(file, attribute){
 #     cat("\ndelete deprecated columns:", 
 #         paste(missCols, collapse = " "))
     fileCols <- attribute[!attribute$names %in% missCols, ]
+  } 
+  
+  if ( length(missCols) == 0 ) {
+    fileCols <- attribute
   }
   
   ## reorder attribute data frame according to file:
@@ -49,13 +53,20 @@ readOrnithoSingleFile <- function(file, attribute){
                  col.names = fileCols$alias, 
                  colClasses = fileCols$class,
                  encoding = "latin1")
+  
   missCols <- attribute[attribute$names %in% missCols & attribute$class != 'NULL',
                            "alias"]
+  
   if ( length(missCols) > 0 ) {
     m <- matrix(nrow = nrow(obj), ncol = length(missCols))
     m <- as.data.frame(m)
     names(m) <- missCols
     obj <- cbind(obj, m)
   }
-  obj[match(attribute$alias, names(obj)), ]
+  
+  # compile correct order and return data
+  index <- match(attribute$alias, names(obj))
+  index <- index[!is.na(index)]
+  obj[,index]
+  
 }

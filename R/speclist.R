@@ -7,7 +7,7 @@ speclist <- function(subsp = NULL, family = NULL,
   ## load standard species list
   ## ----------------------------
   data(def, envir = environment())
-  
+
   ## subset to a certain family
   ## -----------------------------
   if ( !is.null(family) ){
