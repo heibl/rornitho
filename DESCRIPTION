@@ -3,7 +3,7 @@ Type: Package
 Title: Functions for Visualisation of Ornitho Bird Observations
 Version: 1.0-4
 Date: 2016-02-05
-Author: Simon Thorn <thorn@hgon.de>, Christoph Heibl <christoph.heibl@gmx.net>
+Author: Simon Thorn <thorn@hgon.de>, Christoph Heibl <christoph.heibl@gmx.net>, Tobias Erik Reiners <tobias.reiners@senckenberg.de>
 Maintainer: Christoph Heibl <christoph.heibl@gmx.net>, Simon Thorn <thorn@hgon.de>
 Depends: R (>= 2.10), maptools, rgdal, foreign, OpenStreetMap
 Imports: methods
